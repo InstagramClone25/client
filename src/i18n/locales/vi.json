@@ -1,0 +1,4 @@
+{
+  "welcome": "Chào mừng {{name}} đến với ứng dụng",
+  "counter": "Bạn đã bấm {{count}} lần"
+}

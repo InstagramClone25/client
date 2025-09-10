@@ -1,0 +1,4 @@
+{
+  "welcome": "Welcome {{name}} to my app",
+  "counter": "You clicked {{count}} times"
+}
