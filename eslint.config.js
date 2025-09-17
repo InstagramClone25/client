@@ -40,8 +40,21 @@ export default tseslint.config([
       'import/extensions': ['.ts', '.tsx', '.js', '.jsx'],
     },
     rules: {
+      // Tắt rule gốc của ESLint
+      // 'no-unused-vars': 'off',
+
+      // Bật rule của @typescript-eslint với ignorePattern
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          varsIgnorePattern: '^_', // cho biến thường
+          argsIgnorePattern: '^_', // cho tham số (bao gồm cả catch error)
+          caughtErrorsIgnorePattern: '^_', // 👈 cho biến trong catch
+        },
+      ],
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
+      'react-hooks/exhaustive-deps': 'off',
     },
   },
 ]);
