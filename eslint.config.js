@@ -42,6 +42,7 @@ export default tseslint.config([
     rules: {
       // Tắt rule gốc của ESLint
       // 'no-unused-vars': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
 
       // Bật rule của @typescript-eslint với ignorePattern
       '@typescript-eslint/no-unused-vars': [

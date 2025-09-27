@@ -1,37 +1,52 @@
 import { useGoogleLogin } from '@react-oauth/google';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Toast from '@/components/commons/Toast';
-import type { AppDispatch, RootState } from '@/store';
+import { showToast } from '@/lib/toast';
+import type { AppDispatch } from '@/store';
 import { login, loginWithGoogle } from '@/store/slices/authSlice/authThunk';
 
 function Login() {
   const dispatch = useDispatch<AppDispatch>();
-  const { user } = useSelector((state: RootState) => state.auth);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [notification, setNotification] = useState<string>('');
-
-  console.log(user);
+  showToast('Đăng nhập thành công!', 'success', 30000);
 
   const handleLogin = () => {
-    console.log({ email, password });
-    if (!email.trim() || !password.trim()) setNotification('Vui lòng nhập đầy đủ thông tin');
+    if (!email.trim() || !password.trim()) {
+      showToast('Vui lòng nhập đầy đủ thông tin', 'error', 30000);
+      return;
+    }
 
-    dispatch(login({ email, password }));
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then(() => {
+        showToast('Đăng nhập thành công!', 'success', 30000);
+      })
+      .catch((err) => {
+        showToast(err?.message || 'Đăng nhập thất bại', 'error', 30000);
+      });
   };
 
   const handleLoginWithGoogle = useGoogleLogin({
     onSuccess: (codeResponse) => {
-      dispatch(loginWithGoogle(codeResponse.access_token));
-      console.log(codeResponse);
+      dispatch(loginWithGoogle(codeResponse.access_token))
+        .unwrap()
+        .then(() => {
+          showToast('Đăng nhập Google thành công!', 'success', 30000);
+        })
+        .catch(() => {
+          showToast('Đăng nhập Google thất bại!', 'error', 30000);
+        });
     },
-    onError: (error) => console.log('Login Failed:', error),
-    flow: 'implicit',
+    onError: (error) => {
+      console.error('Login Failed:', error);
+      showToast('Đăng nhập Google thất bại!', 'error', 30000);
+    },
   });
+
   return (
     <div className="flex w-full items-center justify-center pt-8">
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
@@ -92,12 +107,10 @@ function Login() {
               ></path>
             </g>
           </svg>
-          Login with Google
+
+          <span>Login with Google</span>
         </button>
       </fieldset>
-      {notification && (
-        <Toast message={notification} type="error" onClose={() => setNotification('')} />
-      )}
     </div>
   );
 }

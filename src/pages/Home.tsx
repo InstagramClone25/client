@@ -3,21 +3,21 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import type { AppDispatch, RootState } from '@/store';
+import { getProfile } from '@/store/slices/authSlice/authThunk';
 import { decrement, increment } from '@/store/slices/counterSlice';
-import { getUsers } from '@/store/slices/userSlice';
 
 function Home() {
   const { t } = useTranslation();
 
   const counter = useSelector((state: RootState) => state.counter.value);
-  const user = useSelector((state: RootState) => state.user);
+  const { user, error, loading, access_token } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
 
   const modalRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     const fetchUsers = () => {
-      dispatch(getUsers());
+      dispatch(getProfile());
     };
 
     fetchUsers();
@@ -25,7 +25,7 @@ function Home() {
 
   return (
     <div className="flex w-full flex-col items-center gap-4 bg-gray-400 py-8">
-      <h1 className="text-4xl">{t('welcome', { name: 'Duyên' })}</h1>
+      <h1 className="text-4xl">{t('welcome', { name: user?.name })}</h1>
       <h2 className="text-3xl text-black">{counter}</h2>
       <div className="flex gap-4">
         <button className="btn btn-active" onClick={() => dispatch(increment())}>
@@ -60,18 +60,17 @@ function Home() {
       </div>
 
       <div>
-        {user.loading && <span className="loading loading-dots loading-xl"></span>}
-        {user.error && <p>Error: {user.error}</p>}
-        {user.items.length > 0 && (
+        {loading && <span className="loading loading-dots loading-xl"></span>}
+        {error && <p>Error: {error}</p>}
+        {!!user && (
           <ul>
-            {user.items.map(({ _id, name, email, createdAt }) => (
-              <li key={_id}>
-                {name} - {email} - {createdAt}
-              </li>
-            ))}
+            <li key={user._id}>
+              {user.name} - {user.email} - {user.role}
+            </li>
           </ul>
         )}
       </div>
+      <div>{access_token}</div>
     </div>
   );
 }

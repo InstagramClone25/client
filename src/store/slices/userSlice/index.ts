@@ -1,27 +1,7 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  isFulfilled,
-  isPending,
-  isRejected,
-} from '@reduxjs/toolkit';
+import { createSlice, isFulfilled, isPending, isRejected } from '@reduxjs/toolkit';
 
-import { userService } from '@/api/userService';
+import { getUsers } from '@/store/slices/userSlice/userThunk';
 import type { User } from '@/types/user';
-
-export const getUsers = createAsyncThunk<User[], void, { rejectValue: string }>(
-  'user/getUsers',
-  async (_, thunkAPI) => {
-    try {
-      // call api get users
-      const { data } = await userService.getUsers();
-
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue('Failed to fetch users: ' + error);
-    }
-  }
-);
 
 interface UserState {
   items: User[];
@@ -41,6 +21,8 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getUsers.fulfilled, (state, action) => {
+      console.log(action);
+
       state.items = action.payload.map((user) => ({
         ...user,
         createdAt: new Date(user.createdAt).toLocaleDateString('vi-VN'),
@@ -60,7 +42,7 @@ const userSlice = createSlice({
       })
       .addMatcher(isRejected(getUsers), (state, action) => {
         state.loading = false;
-        state.error = action.payload!;
+        state.error = action.payload! as string;
       });
   },
 });

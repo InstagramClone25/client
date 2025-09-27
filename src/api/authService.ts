@@ -9,5 +9,8 @@ export const authService = {
   loginWithGoogle: (access_token: string) =>
     api.post<TLoginResponse>('/api/auth/google-login', { access_token }),
   register: (data: { name: string; email: string; password: string }) =>
-    api.post<User>('/api/auth/register', { data }),
+    api.post<{ message: string }>('/api/auth/register', data),
+  refreshToken: () => api.get<{ accessToken: string }>('/api/auth/refresh-token'),
+  profile: () => api.get<{ profileInfo: User }>(`/api/auth/profile`),
+  logout: () => api.get<{ message: string }>(`/api/auth/logout`),
 };

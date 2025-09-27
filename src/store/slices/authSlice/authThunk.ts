@@ -7,7 +7,6 @@ export const login = createAsyncThunk(
   async ({ email, password }: { email: string; password: string }, thunkAPI) => {
     try {
       const { data } = await authService.login(email, password);
-      console.log(data);
       return data;
     } catch (_error) {
       return thunkAPI.rejectWithValue('Login failed');
@@ -23,7 +22,6 @@ export const loginWithGoogle = createAsyncThunk(
       console.log(data);
       return data;
     } catch (_error) {
-      // Sửa thông báo lỗi cho phù hợp
       return thunkAPI.rejectWithValue('Login failed');
     }
   }
@@ -37,8 +35,35 @@ export const register = createAsyncThunk(
       console.log(data);
       return data;
     } catch (_error) {
-      // Sửa thông báo lỗi cho phù hợp
-      return thunkAPI.rejectWithValue('Login failed');
+      return thunkAPI.rejectWithValue('register failed');
     }
   }
 );
+
+export const getProfile = createAsyncThunk('auth/profile', async (_, thunkAPI) => {
+  try {
+    const { data } = await authService.profile();
+    console.log(data);
+    return data;
+  } catch (_error) {
+    return thunkAPI.rejectWithValue('fetch profile failed');
+  }
+});
+
+export const refreshToken = createAsyncThunk('auth/refresh-token', async (_, thunkAPI) => {
+  try {
+    const { data } = await authService.refreshToken();
+    return data;
+  } catch (_error) {
+    return thunkAPI.rejectWithValue('refresh token failed');
+  }
+});
+
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    const { data } = await authService.logout();
+    return data;
+  } catch (error: any) {
+    return thunkAPI.rejectWithValue(error.response?.data?.message);
+  }
+});
