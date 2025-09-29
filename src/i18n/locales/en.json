@@ -1,4 +1,8 @@
 {
   "welcome": "Welcome {{name}} to my app",
-  "counter": "You clicked {{count}} times"
+  "counter": "You clicked {{count}} times",
+  "navHome": "Home",
+  "navAbout": "About",
+  "navLogin": "Login",
+  "navLogout": "Logout"
 }

@@ -1,4 +1,8 @@
 {
   "welcome": "Chào mừng {{name}} đến với ứng dụng",
-  "counter": "Bạn đã bấm {{count}} lần"
+  "counter": "Bạn đã bấm {{count}} lần",
+  "navHome": "Trang chủ",
+  "navAbout": "Về chúng tôi",
+  "navLogin": "Đăng nhập",
+  "navLogout": "Đăng xuất"
 }

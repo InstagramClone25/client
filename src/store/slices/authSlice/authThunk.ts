@@ -19,7 +19,6 @@ export const loginWithGoogle = createAsyncThunk(
   async (access_token: string, thunkAPI) => {
     try {
       const { data } = await authService.loginWithGoogle(access_token);
-      console.log(data);
       return data;
     } catch (_error) {
       return thunkAPI.rejectWithValue('Login failed');
@@ -32,7 +31,6 @@ export const register = createAsyncThunk(
   async (dataRegister: { name: string; email: string; password: string }, thunkAPI) => {
     try {
       const { data } = await authService.register(dataRegister);
-      console.log(data);
       return data;
     } catch (_error) {
       return thunkAPI.rejectWithValue('register failed');
@@ -43,7 +41,6 @@ export const register = createAsyncThunk(
 export const getProfile = createAsyncThunk('auth/profile', async (_, thunkAPI) => {
   try {
     const { data } = await authService.profile();
-    console.log(data);
     return data;
   } catch (_error) {
     return thunkAPI.rejectWithValue('fetch profile failed');

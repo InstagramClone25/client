@@ -11,6 +11,7 @@ function Home() {
 
   const counter = useSelector((state: RootState) => state.counter.value);
   const { user, error, loading, access_token } = useSelector((state: RootState) => state.auth);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const modalRef = useRef<HTMLDialogElement>(null);

@@ -13,11 +13,9 @@ import { store } from '@/store';
 const CLIENT_ID = '833594066954-6uccjnu8bdt2ad7igf7hf7knnot2n8sg.apps.googleusercontent.com';
 setupAxios(store);
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <Provider store={store}>
-      <GoogleOAuthProvider clientId={CLIENT_ID}>
-        <App />
-      </GoogleOAuthProvider>
-    </Provider>
-  </StrictMode>
+  <Provider store={store}>
+    <GoogleOAuthProvider clientId={CLIENT_ID}>
+      <App />
+    </GoogleOAuthProvider>
+  </Provider>
 );

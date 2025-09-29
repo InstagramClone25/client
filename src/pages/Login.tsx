@@ -1,32 +1,40 @@
 import { useGoogleLogin } from '@react-oauth/google';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { showToast } from '@/lib/toast';
-import type { AppDispatch } from '@/store';
+import useToast from '@/hooks/useToast';
+import type { AppDispatch, RootState } from '@/store';
 import { login, loginWithGoogle } from '@/store/slices/authSlice/authThunk';
 
 function Login() {
+  const { access_token, message } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  showToast('Đăng nhập thành công!', 'success', 30000);
+  const { showToast } = useToast();
 
   const handleLogin = () => {
     if (!email.trim() || !password.trim()) {
-      showToast('Vui lòng nhập đầy đủ thông tin', 'error', 30000);
+      showToast({ message: 'Vui lòng nhập đầy đủ thông tin', type: 'error' });
       return;
     }
 
     dispatch(login({ email, password }))
       .unwrap()
       .then(() => {
-        showToast('Đăng nhập thành công!', 'success', 30000);
+        showToast({ message: 'Đăng nhập thành công!', type: 'success' });
       })
       .catch((err) => {
-        showToast(err?.message || 'Đăng nhập thất bại', 'error', 30000);
+        showToast({
+          message: err?.message || 'Đăng nhập thất bại',
+          type: 'error',
+          duration: 30000,
+        });
       });
   };
 
@@ -35,18 +43,41 @@ function Login() {
       dispatch(loginWithGoogle(codeResponse.access_token))
         .unwrap()
         .then(() => {
-          showToast('Đăng nhập Google thành công!', 'success', 30000);
+          showToast({ message: 'Đăng nhập Google thành công!', type: 'success' });
         })
         .catch(() => {
-          showToast('Đăng nhập Google thất bại!', 'error', 30000);
+          showToast({ message: 'Đăng nhập Google thất bại!', type: 'error' });
         });
     },
     onError: (error) => {
       console.error('Login Failed:', error);
-      showToast('Đăng nhập Google thất bại!', 'error', 30000);
+      showToast({ message: 'Đăng nhập Google thất bại!', type: 'error' });
     },
   });
 
+  useEffect(() => {
+    if (access_token) {
+      navigate('/', { replace: true });
+    }
+  }, [access_token]);
+
+  useEffect(() => {
+    const isRequired = searchParams.get('required');
+    if (isRequired) {
+      showToast({
+        message: 'Vui lòng đăng nhập để tiếp tục truy cập!',
+        duration: 3000,
+        type: 'warning',
+      });
+    }
+
+    searchParams.delete('required');
+    setSearchParams(searchParams);
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (message) showToast({ message, duration: 5000, type: 'success' });
+  }, []);
   return (
     <div className="flex w-full items-center justify-center pt-8">
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
