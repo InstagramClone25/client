@@ -1,18 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useRevalidator, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import ThemeToggle from '@/components/theme/ThemeTogle';
 import type { AppDispatch, RootState } from '@/store';
 import { logout } from '@/store/slices/authSlice/authThunk';
 
 function Header() {
   const { i18n } = useTranslation();
   const { t } = useTranslation();
-  const dispatch = useDispatch<AppDispatch>();
-  const revalidator = useRevalidator();
-  const [_searchParams, setSearchParams] = useSearchParams();
 
   const { access_token } = useSelector((state: RootState) => state.auth);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -20,8 +21,7 @@ function Header() {
 
   const handleLogout = async () => {
     await dispatch(logout());
-    setSearchParams({ logout: 'true' });
-    revalidator.revalidate();
+    navigate('/login');
   };
   return (
     <div className="navbar bg-base-100 shadow-sm">
@@ -47,6 +47,9 @@ function Header() {
       </div>
 
       <div className="flex gap-2">
+        <button className="mr-2">
+          <ThemeToggle />
+        </button>
         <button
           onClick={() => changeLanguage('en')}
           className="rounded bg-gray-400 px-2 text-2xl text-white"

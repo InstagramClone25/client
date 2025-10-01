@@ -1,2 +1,10 @@
 @import 'tailwindcss';
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes:
+    light --default,
+    black --prefersdark;
+}
+
+:root {
+  --main-color: #3797ef; /* Tailwind indigo-600 */
+}

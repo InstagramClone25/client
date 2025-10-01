@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import authReducer from './slices/authSlice';
 import counterReducer from './slices/counterSlice';
+import socketReducer from './slices/socketSlice';
 import toastReducer from './slices/toastSlice';
 import userReducer from './slices/userSlice';
 
@@ -11,6 +12,7 @@ export const store = configureStore({
     user: userReducer,
     auth: authReducer,
     toasts: toastReducer,
+    socket: socketReducer,
   },
 });
 

@@ -1,16 +1,16 @@
 import { type LoaderFunctionArgs, redirect } from 'react-router-dom';
 
+import useToast from '@/hooks/useToast';
 import { store } from '@/store';
 
-export const requiredAuth = ({ request }: LoaderFunctionArgs) => {
+export const requiredAuth = (_: LoaderFunctionArgs) => {
   const { access_token } = store.getState().auth;
-
-  if (!access_token && request.url.split('?')[1]?.includes('logout')) {
-    return redirect('/login');
-  }
+  const { showToast } = useToast();
 
   if (!access_token) {
-    return redirect('/login?required=true');
+    showToast({ message: 'Vui lòng đăng nhập để tiếp tục truy cập!', type: 'warning' });
+
+    return redirect('/login');
   }
 
   return { mesage: 'xin chao' };

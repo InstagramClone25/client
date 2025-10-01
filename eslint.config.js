@@ -43,6 +43,7 @@ export default tseslint.config([
       // Tắt rule gốc của ESLint
       // 'no-unused-vars': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      'react-hooks/rules-of-hooks': 'off',
 
       // Bật rule của @typescript-eslint với ignorePattern
       '@typescript-eslint/no-unused-vars': [

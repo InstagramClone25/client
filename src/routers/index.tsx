@@ -24,15 +24,15 @@ export const router = createBrowserRouter([
         element: <About />,
         loader: requiredAuth,
       },
-      {
-        path: '/login',
-        element: <Login />,
-        loader: loginRedirect,
-      },
-      {
-        path: '/register',
-        element: <Register />,
-      },
     ],
+  },
+  {
+    path: '/login',
+    element: <Login />,
+    loader: loginRedirect,
+  },
+  {
+    path: '/register',
+    element: <Register />,
   },
 ]);

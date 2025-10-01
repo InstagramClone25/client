@@ -2,7 +2,7 @@ import '@/index.css';
 import '@/i18n'; // Cấu hình i18n
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { StrictMode } from 'react';
+// import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 

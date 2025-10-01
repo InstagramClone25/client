@@ -1,14 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
-
-import type { AppDispatch, RootState } from '@/store';
+import { store } from '@/store';
 import { add, remove, type TToast } from '@/store/slices/toastSlice';
 
 const DEFAULT_TIMEOUT = 3000;
 
 function useToast() {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const toasts = useSelector((state: RootState) => state.toasts);
+  const dispatch = store.dispatch;
 
   const showToast = (toast: { message: string; duration?: number; type?: TToast['type'] }) => {
     const id = Date.now();
@@ -21,7 +17,7 @@ function useToast() {
     dispatch(remove(id));
   };
 
-  return { toasts, showToast, removeToast };
+  return { showToast, removeToast };
 }
 
 export default useToast;
