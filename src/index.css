@@ -4,7 +4,168 @@
     light --default,
     black --prefersdark;
 }
+@custom-variant dark (&:where([data-theme=black], [data-theme=black] *));
 
-:root {
-  --main-color: #3797ef; /* Tailwind indigo-600 */
+@plugin "daisyui/theme" {
+  name: 'light';
+  --color-base-content: #262626;
+  --color-base-100: #ffffff;
+  --color-base-200: #f2f2f2;
+}
+@plugin "daisyui/theme" {
+  name: 'black';
+  --color-base-content: #f9f9f9;
+  --color-base-100: #000000;
+  --color-base-200: #121212;
+}
+
+@theme {
+  --color-cblue: #3797ef;
+  --color-cdark: #3c3c43;
+}
+
+/* SF Pro Display - Light */
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* SF Pro Display - Regular */
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* SF Pro Display - Medium */
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* SF Pro Display - Semibold */
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-SemiboldItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* SF Pro Display - Bold */
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* SF Pro Display - Heavy */
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-Heavy.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-HeavyItalic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+/* SF Pro Display - Black */
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-BlackItalic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* SF Pro Display - Thin */
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-ThinItalic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+}
+
+/* SF Pro Display - Ultralight */
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-Ultralight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  src: url('./assets/fonts/SFPro/SF-Pro-Display-UltralightItalic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+html,
+body {
+  font-family:
+    'SF Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
 }

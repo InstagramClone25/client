@@ -1,24 +1,18 @@
-import { useEffect } from 'react';
 import { RouterProvider } from 'react-router-dom';
 
 import Toast from '@/components/toast/Toast';
+import { ThemeProvider } from '@/context/ThemeProvider';
 import useSocket from '@/hooks/useSocket';
 import { router } from '@/routers';
 
 function App() {
   useSocket();
 
-  useEffect(() => {
-    const savedTheme = (localStorage.getItem('theme') as 'light' | 'black') || 'light';
-    console.log({ savedTheme });
-
-    document.documentElement.setAttribute('data-theme', savedTheme);
-  }, []);
   return (
-    <>
+    <ThemeProvider>
       <RouterProvider router={router} />
       <Toast />
-    </>
+    </ThemeProvider>
   );
 }
 
