@@ -46,7 +46,7 @@ const authSlice = createSlice({
     });
 
     builder.addCase(getProfile.fulfilled, (state, action) => {
-      state.user = action.payload.profileInfo;
+      state.user = action.payload;
     });
 
     builder.addCase(refreshToken.fulfilled, (state, action) => {

@@ -24,7 +24,6 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         document.documentElement.setAttribute('data-theme', currentTheme);
       }
     };
-    console.log('====b====');
 
     updateResolvedTheme(savedTheme);
 
@@ -42,7 +41,6 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const setTheme = (newTheme: TTheme) => {
     setThemeState(newTheme);
     localStorage.setItem('theme', newTheme);
-    console.log('====a=====');
   };
 
   return (

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import FacebookLogo from '@/assets/logos/facebook.svg?react';
 import InstagramLogoDark from '@/assets/logos/instagram-dark.svg?react';
 import InstagramLogoWhite from '@/assets/logos/instagram-white.svg?react';
-import ThemeToggle from '@/components/theme/ThemeTogle';
 import { useTheme } from '@/hooks/useTheme';
 
 function Login() {
@@ -51,7 +50,7 @@ function Login() {
 
           <Link
             to={'#'}
-            className="mt-[7px] mb-[30px] block w-full text-end text-[12px] text-[var(--main-color)] underline"
+            className="mt-[7px] mb-[30px] block w-full text-end text-[12px] text-[var(--main-color)]"
           >
             Forgot password?
           </Link>
@@ -59,7 +58,7 @@ function Login() {
           {/* Login Button */}
           <button
             type="submit"
-            className="btn h-11 w-full rounded-sm bg-[var(--main-color)] disabled:!bg-[var(--main-color)]"
+            className="btn h-11 w-full rounded-sm bg-[var(--main-color)] text-white disabled:!bg-[var(--main-color)]"
           >
             Login
           </button>
@@ -67,7 +66,7 @@ function Login() {
 
         {/* Login with Facebook */}
         <button
-          className="mt-[37px] mb-[42px] flex w-full justify-center gap-2 text-sm text-[var(--main-color)]"
+          className="mx-auto mt-[37px] mb-[42px] flex justify-center gap-2 text-sm text-[var(--main-color)]"
           onClick={handleLoginWithFacebook}
         >
           <FacebookLogo />
