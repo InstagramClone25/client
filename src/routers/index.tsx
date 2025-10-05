@@ -5,25 +5,24 @@ import MainLayout from '@/layouts/MainLayout';
 import { loginRedirect } from '@/routers/loaders/loginRedirect';
 import { requiredAuth } from '@/routers/loaders/requireAuth';
 
-const Home = lazy(() => import('@/pages/Home'));
 const About = lazy(() => import('@/pages/About'));
 const Login = lazy(() => import('@/pages/Login'));
 const LoginQuick = lazy(() => import('@/pages/LoginQuick'));
 const Register = lazy(() => import('@/pages/Register'));
+const Main = lazy(() => import('@/pages/Main'));
 
 export const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
       {
-        path: '/',
-        element: <Home />,
-        loader: requiredAuth,
-      },
-      {
         path: '/about',
         element: <About />,
         loader: requiredAuth,
+      },
+      {
+        path: '/',
+        element: <Main />,
       },
     ],
   },

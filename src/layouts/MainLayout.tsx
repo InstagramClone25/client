@@ -1,14 +1,14 @@
 import { Outlet } from 'react-router-dom';
 
-import Header from '@/components/Header';
+import TabBar from '@/components/TabBar';
 
 function MainLayout() {
   return (
-    <div>
-      <Header />
-      <div className="bg-gray-500 py-[60px]">
+    <div className="flex h-[100dvh] max-h-screen flex-col">
+      <div className="flex-1 overflow-y-auto">
         <Outlet />
       </div>
+      <TabBar />
     </div>
   );
 }
