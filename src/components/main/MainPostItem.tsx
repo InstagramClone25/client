@@ -24,18 +24,23 @@ function MainPostItem({ post }: IMainPostItemProps) {
       <div className="flex h-[54px] items-center justify-between px-2.5">
         <div className="flex gap-2.5">
           <Avatar src={post.author.avatar} size={32} />
+
           <div className="flex flex-col justify-center gap-[1px]">
             <div className="flex items-center gap-1">
               <span className="text-[13px]">{post.author.name}</span>
               {post.author.verified && <OfficialSolidIcon />}
             </div>
+
             <span className="text-[11px]">{post.author.location}</span>
           </div>
         </div>
+
         <Ellipsis size={14} className="mr-[5px]" />
       </div>
+
       {/* Media carousel */}
-      <MainMediaCarousel medias={post.media} setCurrent={setCurrent} />
+      <MainMediaCarousel current={current} medias={post.media} setCurrent={setCurrent} />
+
       <div className="p-3.5">
         <div className="flex items-center">
           <div className="flex flex-1 gap-[17.5px]">
@@ -54,7 +59,7 @@ function MainPostItem({ post }: IMainPostItemProps) {
                 <span
                   key={idx}
                   className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                    current === idx ? 'bg-[var(--main-color)]' : 'bg-white/30'
+                    current === idx ? 'bg-cblue' : 'bg-white/30'
                   }`}
                 />
               ))}

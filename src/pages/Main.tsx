@@ -350,7 +350,10 @@ function Main() {
     <div className="flex h-full flex-col">
       <MainHeader showHeader={showHeader} />
       <div ref={scrollRef} className="hide-scrollbar flex-1 overflow-y-auto pt-11">
+        {/* STORY */}
         <MainStoryList />
+
+        {/* POST LIST */}
         <div className="flex flex-col gap-4">
           {LIST_POST_DEMO.map((post) => (
             <MainPostItem post={post} key={post.id} />

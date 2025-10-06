@@ -4,10 +4,11 @@ import type { IMedia } from '@/types/post';
 
 interface IMainMediaCarouselProps {
   medias: IMedia[];
+  current: number;
   setCurrent: Dispatch<SetStateAction<number>>;
 }
 
-function MainMediaCarousel({ medias, setCurrent }: IMainMediaCarouselProps) {
+function MainMediaCarousel({ medias, current, setCurrent }: IMainMediaCarouselProps) {
   const itemsRef = useRef<HTMLDivElement[]>([]);
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -48,7 +49,9 @@ function MainMediaCarousel({ medias, setCurrent }: IMainMediaCarouselProps) {
         ))}
       </div>
 
-      {/* Pagination dots */}
+      <div className="bg-base-200/90 absolute top-4 right-4 flex h-6.5 w-8.5 items-center justify-center rounded-[13px] text-xs">
+        {current + 1}/{medias.length}
+      </div>
     </div>
   );
 }
