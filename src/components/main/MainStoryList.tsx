@@ -1,5 +1,4 @@
-import Avatar from '@/components/Avatar';
-import { useTheme } from '@/hooks/useTheme';
+import AvatarStory from '@/components/AvatarStory';
 
 const USERS = [
   {
@@ -47,17 +46,11 @@ const USERS = [
 ];
 
 function MainStoryList() {
-  const { resolvedTheme } = useTheme();
-
   return (
-    <div
-      className={`hide-scrollbar flex h-[98px] w-full items-center gap-5 overflow-x-auto border-b-[0.5px] px-2.5 ${
-        resolvedTheme === 'black' ? 'border-[#3C3C434A]' : 'border-[#3C3C434A]'
-      }`}
-    >
+    <div className="hide-scrollbar border-cdark/30 flex h-[98px] w-full items-center gap-5 overflow-x-auto border-b-[0.5px] px-2.5">
       {USERS.map((user) => (
         <div key={user._id} className="flex h-fit flex-col items-center justify-center gap-[5px]">
-          <Avatar src={user.avatar} hasStory={user.hasStory} isLive={user.isLive} size={52} />
+          <AvatarStory src={user.avatar} hasStory={user.hasStory} isLive={user.isLive} size={56} />
           <span className="text-[12px] leading-3.5">{user.name}</span>
         </div>
       ))}

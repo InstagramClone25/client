@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import InstagramLogoDark from '@/assets/logos/instagram-dark.svg?react';
-import InstagramLogoWhite from '@/assets/logos/instagram-white.svg?react';
-import { useTheme } from '@/hooks/useTheme';
+import InstagramLogo from '@/assets/logos/instagram.svg?react';
 
 function LoginQuick() {
-  const { resolvedTheme } = useTheme();
   const [userSaved, setUserSaved] = useState<{ avatar: string; username: string } | null>(null);
 
   useEffect(() => {
@@ -21,7 +18,7 @@ function LoginQuick() {
       <div className="flex flex-1 items-center px-8.5">
         <div className="w-full">
           <div className="mx-auto mb-[52px] w-fit">
-            {resolvedTheme === 'black' ? <InstagramLogoWhite /> : <InstagramLogoDark />}
+            <InstagramLogo />
           </div>
 
           <div className="mb-3 flex flex-col items-center gap-[13px]">

@@ -9,7 +9,7 @@ import HomeSolidIcon from '@/assets/icons/home-solid.svg?react';
 import HomeStrokeIcon from '@/assets/icons/home-stroke.svg?react';
 import SearchSolidIcon from '@/assets/icons/search-solid.svg?react';
 import SearchStrokeIcon from '@/assets/icons/search-stroke.svg?react';
-import Avatar from '@/components/Avatar';
+import AvatarStory from '@/components/AvatarStory';
 import Rectangle from '@/components/Rectangle';
 import type { AppDispatch, RootState } from '@/store';
 import { getProfile } from '@/store/slices/authSlice/authThunk';
@@ -43,7 +43,7 @@ function TabBar() {
       </div>
 
       <div className="flex flex-1 items-center justify-center">
-        <Avatar src={user?.avatar || 'default'} size={23} />
+        <AvatarStory src={user?.avatar || 'default'} size={23} />
       </div>
     </Rectangle>
   );

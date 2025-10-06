@@ -3,13 +3,9 @@ import { Link } from 'react-router-dom';
 
 import ChevronLeft from '@/assets/icons/chvron-left.svg?react';
 import FacebookLogo from '@/assets/logos/facebook.svg?react';
-import InstagramLogoDark from '@/assets/logos/instagram-dark.svg?react';
-import InstagramLogoWhite from '@/assets/logos/instagram-white.svg?react';
-import { useTheme } from '@/hooks/useTheme';
+import InstagramLogo from '@/assets/logos/instagram.svg?react';
 
 function Login() {
-  const { resolvedTheme } = useTheme();
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -33,7 +29,7 @@ function Login() {
       <div className="flex min-h-0 flex-1 flex-col justify-center px-4 pb-[2.5vh]">
         {/* Logo Instagram */}
         <div className="mx-auto mb-[39px]">
-          {resolvedTheme === 'black' ? <InstagramLogoWhite /> : <InstagramLogoDark />}
+          <InstagramLogo />
         </div>
 
         <form autoComplete="on" className="flex flex-col space-y-3">

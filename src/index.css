@@ -11,17 +11,20 @@
   --color-base-content: #262626;
   --color-base-100: #ffffff;
   --color-base-200: #f2f2f2;
+  --color-base-300: #fafafa;
 }
 @plugin "daisyui/theme" {
   name: 'black';
   --color-base-content: #f9f9f9;
   --color-base-100: #000000;
   --color-base-200: #121212;
+  --color-base-300: #121212;
 }
 
 @theme {
   --color-cblue: #3797ef;
   --color-cdark: #3c3c43;
+  --color-cgray: #a6a6aa;
 }
 
 /* SF Pro Display - Light */
@@ -324,4 +327,12 @@ body {
 .hide-scrollbar {
   -ms-overflow-style: none; /* IE, Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.app-header {
+  @apply bg-base-300 border-b-cgray/30 fixed top-0 left-0 z-50 flex h-11 w-full translate-y-0 items-center border-b px-3 transition-transform duration-300 dark:!border-b-white/15;
+}
+
+.app-header--hidden {
+  @apply -translate-y-full;
 }

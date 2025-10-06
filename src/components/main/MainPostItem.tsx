@@ -1,5 +1,6 @@
 import { Ellipsis } from 'lucide-react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import CommentStrokeIcon from '@/assets/icons/comment-stroke.svg?react';
 import HeartSolidIcon from '@/assets/icons/heart-solid.svg?react';
@@ -10,6 +11,8 @@ import SaveSolidIcon from '@/assets/icons/save-solid.svg?react';
 import SaveStrokeIcon from '@/assets/icons/save-stroke.svg?react';
 import Avatar from '@/components/Avatar';
 import MainMediaCarousel from '@/components/main/MainMediaCarousel';
+import type { AppDispatch } from '@/store';
+import { likePost } from '@/store/slices/postSlice';
 import type { IPost } from '@/types/post';
 
 interface IMainPostItemProps {
@@ -18,6 +21,9 @@ interface IMainPostItemProps {
 
 function MainPostItem({ post }: IMainPostItemProps) {
   const [current, setCurrent] = useState(0);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleLikePost = () => dispatch(likePost(post.id));
 
   return (
     <div>
@@ -45,9 +51,9 @@ function MainPostItem({ post }: IMainPostItemProps) {
         <div className="flex items-center">
           <div className="flex flex-1 gap-[17.5px]">
             {post.isLikedByCurrentUser ? (
-              <HeartSolidIcon width={24} className="text-[#ff3041]" />
+              <HeartSolidIcon width={24} className="text-[#ff3041]" onClick={handleLikePost} />
             ) : (
-              <HeartStrokeIcon width={24} />
+              <HeartStrokeIcon width={24} onClick={handleLikePost} />
             )}
             <CommentStrokeIcon width={22} />
             <MessageStrokeIcon width={23} />
@@ -59,7 +65,7 @@ function MainPostItem({ post }: IMainPostItemProps) {
                 <span
                   key={idx}
                   className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                    current === idx ? 'bg-cblue' : 'bg-white/30'
+                    current === idx ? 'bg-cblue' : 'bg-black/15 dark:bg-white/30'
                   }`}
                 />
               ))}
@@ -74,11 +80,7 @@ function MainPostItem({ post }: IMainPostItemProps) {
           {post.likes.count > 0 && (
             <div className="mb-[5px] flex h-fit items-center gap-[6.5px]">
               {post.likes.sample.length > 0 && (
-                <div className="avatar block w-fit">
-                  <div className="w-[17px] rounded-full">
-                    <img src={post.likes.sample[0].avatar} />
-                  </div>
-                </div>
+                <Avatar src={post.likes.sample[0].avatar} size={17} />
               )}
 
               {post.likes.sample.length > 0 ? (
@@ -93,9 +95,10 @@ function MainPostItem({ post }: IMainPostItemProps) {
             </div>
           )}
 
-          <span>
-            <strong className="font-semibold">{post.author.name}</strong> {post.caption}
-          </span>
+          <p>
+            <strong className="font-semibold">{post.author.name}</strong>{' '}
+            <span className="whitespace-pre-wrap">{post.caption}</span>
+          </p>
         </div>
 
         <span className="mt-[13px] text-[11px] text-gray-500">September 19</span>

@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-import MainLayout from '@/layouts/MainLayout';
+import AppLayout from '@/layouts/AppLayout';
 import { loginRedirect } from '@/routers/loaders/loginRedirect';
 import { requiredAuth } from '@/routers/loaders/requireAuth';
 
@@ -13,7 +13,7 @@ const Main = lazy(() => import('@/pages/Main'));
 
 export const router = createBrowserRouter([
   {
-    element: <MainLayout />,
+    element: <AppLayout />,
     children: [
       {
         path: '/about',

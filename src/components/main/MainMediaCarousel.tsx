@@ -29,12 +29,9 @@ function MainMediaCarousel({ medias, current, setCurrent }: IMainMediaCarouselPr
 
     return () => observer.disconnect();
   }, []);
-
-  console.log({ medias });
-
   return (
     <div className="relative max-h-[100vw]">
-      <div className="carousel rounded-box box-border h-[100vw] w-full">
+      <div className="carousel h-[100vw] w-full">
         {medias.map((media, idx) => (
           <div
             key={idx}
@@ -49,7 +46,7 @@ function MainMediaCarousel({ medias, current, setCurrent }: IMainMediaCarouselPr
         ))}
       </div>
 
-      <div className="bg-base-200/90 absolute top-4 right-4 flex h-6.5 w-8.5 items-center justify-center rounded-[13px] text-xs">
+      <div className="absolute top-4 right-4 flex h-6.5 w-8.5 items-center justify-center rounded-[13px] bg-[#121212]/90 text-xs text-white">
         {current + 1}/{medias.length}
       </div>
     </div>
