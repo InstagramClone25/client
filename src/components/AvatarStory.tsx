@@ -1,0 +1,54 @@
+type AvatarStoryProps = {
+  src: string;
+  alt?: string;
+  hasStory?: boolean;
+  isLive?: boolean;
+  size?: number; // px
+};
+
+// Một vài gradient viền ngẫu nhiên
+const gradients = [
+  'from-pink-500 via-red-500 to-yellow-500',
+  'from-purple-500 via-pink-500 to-red-500',
+  'from-blue-500 via-purple-500 to-pink-500',
+  'from-green-400 via-blue-500 to-purple-500',
+];
+
+export default function AvatarStory({
+  src,
+  alt = 'avatar',
+  hasStory = false,
+  isLive = false,
+  size = 64,
+}: AvatarStoryProps) {
+  const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+
+  return (
+    <div className="flex flex-col items-center">
+      <div
+        className={`relative rounded-full p-[2px] ${hasStory ? 'bg-gradient-to-tr ' + randomGradient : 'bg-transparent'} `}
+        style={{ width: size + 10, height: size + 10 }}
+      >
+        <div
+          className={`flex h-full w-full items-center justify-center overflow-hidden rounded-full border-3 border-white dark:border-black`}
+        >
+          <img
+            src={src}
+            alt={alt}
+            className="rounded-full object-cover"
+            style={{ width: size, height: size }}
+          />
+        </div>
+
+        {/* LIVE badge */}
+        {isLive && (
+          <div
+            className={`absolute -bottom-1 left-1/2 flex h-4 w-[26px] -translate-x-1/2 items-center justify-center rounded-[3px] border-2 border-white bg-gradient-to-r from-[#C90083] via-[#D22463] to-[#E10038] text-[8px] font-medium tracking-[0.5px] text-white dark:border-black`}
+          >
+            LIVE
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
