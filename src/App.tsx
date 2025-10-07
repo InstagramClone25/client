@@ -10,8 +10,10 @@ function App() {
 
   return (
     <ThemeProvider>
-      <RouterProvider router={router} />
-      <Toast />
+      <div className="relative mx-auto flex h-dvh w-[425px] max-w-dvw flex-col">
+        <RouterProvider router={router} />
+        <Toast />
+      </div>
     </ThemeProvider>
   );
 }

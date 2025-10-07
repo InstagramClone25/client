@@ -10,16 +10,12 @@ const Login = lazy(() => import('@/pages/Login'));
 const LoginQuick = lazy(() => import('@/pages/LoginQuick'));
 const Register = lazy(() => import('@/pages/Register'));
 const Main = lazy(() => import('@/pages/Main'));
+const ProfileEdit = lazy(() => import('@/pages/ProfileEdit'));
 
 export const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
-      {
-        path: '/about',
-        element: <About />,
-        loader: requiredAuth,
-      },
       {
         path: '/',
         element: <Main />,
@@ -39,5 +35,9 @@ export const router = createBrowserRouter([
   {
     path: '/register',
     element: <Register />,
+  },
+  {
+    path: '/profile-edit',
+    element: <ProfileEdit />,
   },
 ]);

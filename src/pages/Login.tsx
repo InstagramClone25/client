@@ -54,14 +54,14 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <Link to={'#'} className="text-cblue mt-[7px] mb-[30px] self-end text-xs font-medium">
+          <Link to={'#'} className="text-cblue-100 mt-[7px] mb-[30px] self-end text-xs font-medium">
             Forgot password?
           </Link>
 
           {/* Login Button */}
           <button
             type="submit"
-            className="btn bg-cblue disabled:!bg-cblue/50 h-11 w-full rounded-[5px] text-white"
+            className="btn bg-cblue-100 disabled:!bg-cblue-100/50 h-11 w-full rounded-[5px] text-white"
             disabled={isDisableLoginBtn}
           >
             Login
@@ -70,7 +70,7 @@ function Login() {
 
         {/* Login with Facebook */}
         <button
-          className="text-cblue mx-auto mt-[37px] mb-[42px] flex gap-2 text-sm font-semibold"
+          className="text-cblue-100 mx-auto mt-[37px] mb-[42px] flex gap-2 text-sm font-semibold"
           onClick={handleLoginWithFacebook}
         >
           <FacebookLogo />
@@ -87,7 +87,7 @@ function Login() {
         {/* Sign up link */}
         <span className="block w-full text-center text-sm text-black/40 dark:text-white/60">
           Don’t have an account?{' '}
-          <Link to="#" className="text-cblue">
+          <Link to="#" className="text-cblue-100">
             Sign up.
           </Link>
         </span>

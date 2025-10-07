@@ -10,7 +10,6 @@ import HomeStrokeIcon from '@/assets/icons/home-stroke.svg?react';
 import SearchSolidIcon from '@/assets/icons/search-solid.svg?react';
 import SearchStrokeIcon from '@/assets/icons/search-stroke.svg?react';
 import AvatarStory from '@/components/AvatarStory';
-import Rectangle from '@/components/Rectangle';
 import type { AppDispatch, RootState } from '@/store';
 import { getProfile } from '@/store/slices/authSlice/authThunk';
 
@@ -25,7 +24,7 @@ function TabBar() {
   }, []);
 
   return (
-    <Rectangle className="flex h-[50px]">
+    <div className="bg-base-300 flex h-[50px]">
       <div className="flex flex-1 items-center justify-center">
         {pathname === '/' ? <HomeSolidIcon /> : <HomeStrokeIcon />}
       </div>
@@ -45,7 +44,7 @@ function TabBar() {
       <div className="flex flex-1 items-center justify-center">
         <AvatarStory src={user?.avatar || 'default'} size={23} />
       </div>
-    </Rectangle>
+    </div>
   );
 }
 

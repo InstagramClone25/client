@@ -65,7 +65,7 @@ function MainPostItem({ post }: IMainPostItemProps) {
                 <span
                   key={idx}
                   className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                    current === idx ? 'bg-cblue' : 'bg-black/15 dark:bg-white/30'
+                    current === idx ? 'bg-cblue-100' : 'bg-black/15 dark:bg-white/30'
                   }`}
                 />
               ))}

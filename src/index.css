@@ -12,6 +12,7 @@
   --color-base-100: #ffffff;
   --color-base-200: #f2f2f2;
   --color-base-300: #fafafa;
+  --color-base-400: #fafafa;
 }
 @plugin "daisyui/theme" {
   name: 'black';
@@ -19,10 +20,14 @@
   --color-base-100: #000000;
   --color-base-200: #121212;
   --color-base-300: #121212;
+  --color-base-400: #000000;
 }
 
 @theme {
-  --color-cblue: #3797ef;
+  --color-base-400: var(--color-base-400);
+
+  --color-cblue-100: #3797ef;
+  --color-cblue-200: #3897f0;
   --color-cdark: #3c3c43;
   --color-cgray: #a6a6aa;
 }
@@ -330,7 +335,7 @@ body {
 }
 
 .app-header {
-  @apply bg-base-300 border-b-cgray/30 fixed top-0 left-0 z-50 flex h-11 w-full translate-y-0 items-center border-b px-3 transition-transform duration-300 dark:!border-b-white/15;
+  @apply bg-base-300 border-b-cgray/30 absolute top-0 left-0 z-50 flex h-11 w-full translate-y-0 items-center border-b px-3 transition-transform duration-300 dark:!border-b-white/15;
 }
 
 .app-header--hidden {

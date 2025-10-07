@@ -37,14 +37,14 @@ function LoginQuick() {
 
           <button
             type="submit"
-            className="btn bg-cblue disabled:!bg-cblue h-11 w-full rounded-sm text-white"
+            className="btn bg-cblue-100 disabled:!bg-cblue-100 h-11 w-full rounded-sm text-white"
           >
             Login
           </button>
 
           <Link
             to="/login"
-            className="text-cblue mx-auto mt-[30px] flex justify-center gap-2 text-sm font-semibold"
+            className="text-cblue-100 mx-auto mt-[30px] flex justify-center gap-2 text-sm font-semibold"
           >
             Switch accounts
           </Link>
